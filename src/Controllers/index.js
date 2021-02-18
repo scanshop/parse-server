@@ -91,7 +91,7 @@ export function getLoggerController(options: ParseServerOptions): LoggerControll
 }
 
 export function getFilesController(options: ParseServerOptions): FilesController {
-  const { appId, databaseURI, filesAdapter, databaseAdapter, preserveFileName, fileKey } = options;
+  const { appId, databaseURI, filesAdapter, databaseAdapter, preserveFileName, datestampFileName, fileKey } = options;
   if (!filesAdapter && databaseAdapter) {
     throw 'When using an explicit database adapter, you must also use an explicit filesAdapter.';
   }
@@ -100,6 +100,7 @@ export function getFilesController(options: ParseServerOptions): FilesController
   });
   return new FilesController(filesControllerAdapter, appId, {
     preserveFileName,
+    datestampFileName,
   });
 }
 

@@ -93,6 +93,10 @@ export interface ParseServerOptions {
   :ENV: PARSE_SERVER_PRESERVE_FILE_NAME
   :DEFAULT: false */
   preserveFileName: ?boolean;
+  /* Enable (or disable) the addition of current date at time of file creation
+  :ENV: PARSE_SERVER_DATESTAMP_FILE_NAME
+  :DEFAULT: false */
+  datestampFileName: ?boolean;
   /* Personally identifiable information fields in the user table the should be removed for non-authorized users. Deprecated @see protectedFields */
   userSensitiveFields: ?(string[]);
   /* Protected fields that should be treated with extra security when fetching details.
