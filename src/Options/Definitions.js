@@ -109,6 +109,12 @@ module.exports.ParseServerOptions = {
     required: true,
     default: 'mongodb://localhost:27017/parse',
   },
+  datestampFileName: {
+    env: 'PARSE_SERVER_DATESTAMP_FILE_NAME',
+    help: 'Enable (or disable) the addition of current date at time of file creation',
+    action: parsers.booleanParser,
+    default: false,
+  },
   directAccess: {
     env: 'PARSE_SERVER_ENABLE_EXPERIMENTAL_DIRECT_ACCESS',
     help:

@@ -10,6 +10,18 @@ const legacyFilesRegex = new RegExp(
   '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}-.*'
 );
 
+function formatDate(date) {
+  var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [year, month, day].join('-');
+}
+
 export class FilesController extends AdaptableController {
   getFileData(config, filename) {
     return this.adapter.getFileData(filename);
@@ -28,6 +40,10 @@ export class FilesController extends AdaptableController {
 
     if (!this.options.preserveFileName) {
       filename = randomHexString(32) + '_' + filename;
+    }
+
+    if (this.options.datestampFileName) {
+      filename = formatDate(new Date()) + '_' + filename;
     }
 
     const location = this.adapter.getFileLocation(config, filename);
